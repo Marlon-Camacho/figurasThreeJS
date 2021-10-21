@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ThreeJS</title>
+</head>
+<body>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+
+        var scene = new THREE.Scene();
+
+        var camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth/window.innerHeight
+        );
+
+
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+
+        var geometry = new THREE.BoxGeometry();
+        var material = new THREE.MeshBasicMaterial({color: 003300, wireframe: true});
+        var cube = new THREE.Mesh(geometry, material);
+        cube.position.y = -2;
+
+        var geometryP = new THREE.SphereGeometry();
+        var materialP = new THREE.MeshBasicMaterial({color: 102200, wireframe: true});
+        var esfera = new THREE.Mesh(geometryP, materialP);
+        esfera.position.x = 2;
+
+        var geometrycil = new THREE.CylinderGeometry(1, 1, 2);
+        var materialcil = new THREE.MeshBasicMaterial({color: 100000, wireframe: true});
+        var cilindro = new THREE.Mesh(geometrycil, materialcil);
+        cilindro.position.x=-2;
+
+        var geometryD = new THREE.TorusGeometry();
+        var materialD = new THREE.MeshBasicMaterial({color: 103001, wireframe: true});
+        var dona = new THREE.Mesh(geometryD, materialD);
+        dona.position.y = 2
+
+        
+        scene.add(cube, esfera, cilindro, dona);
+
+        camera.position.z = 5;
+
+        var animate = function(){
+            requestAnimationFrame(animate);
+
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            esfera.rotation.x += 0.01;
+            esfera.rotation.y += 0.01;
+
+            cilindro.rotation.x += 0.01;
+            cilindro.rotation.y += 0.01;
+
+            dona.rotation.x += 0.01;
+            dona.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+
+        }
+
+        animate();
+
+    </script>
+
+</body>
+</html>
